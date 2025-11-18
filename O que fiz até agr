@@ -1,0 +1,1444 @@
+#O basico né
+sanidade = 100
+obj = " "
+obj1 = " "
+obj2 = " "
+integrantes = 5
+
+#Faz o jogo resetar sempre que reiniciado
+def resetar_jogo():
+    global sanidade, integrantes, obj, obj1, obj2
+    sanidade = 100
+    integrantes = 5
+    obj = " "
+    obj1 = " "
+    obj2 = " "
+    inicio()
+
+#Tela de morte 2
+def tela_morte2():
+    print()
+
+    print("              ########################            ")
+    print("            ############################          ")
+    print("          ################################        ")
+    print("          ################################        ")
+    print("        ####################################      ")
+    print("        ####################################      ")
+    print("        ######################################    ")
+    print("      ########################################    ")
+    print("      ########################################    ")
+    print("      ########      ++##########      ########    ")
+    print("      MM####          ########          ######    ")
+    print("      @@####            @@##..          @@####    ")
+    print("      --@@##            ######          MM####    ")
+    print("        ####          ########          ####      ")
+    print("        ####################################      ")
+    print("        ################    ################      ")
+    print("      --##############        ################    ")
+    print("      @@##############        ################    ")
+    print("        ##############  ::MM  ##############      ")
+    print("                ####################              ")
+    print("                @@##################              ")
+    print("                  ##  ####++##  ####              ")
+    print("                ::##  ####++##  ####              ")
+    print("                        --..                      ")
+    print("                                                  ")
+    print("             VOCÊ MORREU POR NÃO CONSEGUIR A SANIDADE")
+    print("                 O que você deseja fazer?")
+    print("                 1-Volta ao inicio do jogo")
+    print("                 2-Sair")
+    escolha = input("Escolha:")
+    if escolha == "1":
+        resetar_jogo()
+    else:
+        print("Obrigado por jogar!")
+
+#Tela de morte 1
+def tela_morte1():
+    print()
+
+    print("              ########################            ")
+    print("            ############################          ")
+    print("          ################################        ")
+    print("          ################################        ")
+    print("        ####################################      ")
+    print("        ####################################      ")
+    print("        ######################################    ")
+    print("      ########################################    ")
+    print("      ########################################    ")
+    print("      ########      ++##########      ########    ")
+    print("      MM####          ########          ######    ")
+    print("      @@####            @@##..          @@####    ")
+    print("      --@@##            ######          MM####    ")
+    print("        ####          ########          ####      ")
+    print("        ####################################      ")
+    print("        ################    ################      ")
+    print("      --##############        ################    ")
+    print("      @@##############        ################    ")
+    print("        ##############  ::MM  ##############      ")
+    print("                ####################              ")
+    print("                @@##################              ")
+    print("                  ##  ####++##  ####              ")
+    print("                ::##  ####++##  ####              ")
+    print("                        --..                      ")
+    print("                                                  ")
+    print("            MORREU POR NÃO TER SENSO DE AUTO PRESERVAÇÃO")
+    print("                 O que você deseja fazer?")
+    print("                 1-Voltar ao inicio do jogo")
+    print("                 2-Sair")
+    escolha = input("Escolha:")
+    if escolha == "1":
+        resetar_jogo()
+    else:
+        print("NÃO JOGUE MAIS!")
+    
+#Tela de morte
+def tela_morte():
+    print()
+
+    print("              ########################            ")
+    print("            ############################          ")
+    print("          ################################        ")
+    print("          ################################        ")
+    print("        ####################################      ")
+    print("        ####################################      ")
+    print("        ######################################    ")
+    print("      ########################################    ")
+    print("      ########################################    ")
+    print("      ########      ++##########      ########    ")
+    print("      MM####          ########          ######    ")
+    print("      @@####            @@##..          @@####    ")
+    print("      --@@##            ######          MM####    ")
+    print("        ####          ########          ####      ")
+    print("        ####################################      ")
+    print("        ################    ################      ")
+    print("      --##############        ################    ")
+    print("      @@##############        ################    ")
+    print("        ##############  ::MM  ##############      ")
+    print("                ####################              ")
+    print("                @@##################              ")
+    print("                  ##  ####++##  ####              ")
+    print("                ::##  ####++##  ####              ")
+    print("                        --..                      ")
+    print("                                                  ")
+    print("                    VOCÊ MORREU")
+    print("                 O que você deseja fazer?")
+    print("                 1-Voltar ao inicio do jogo")
+    print("                 2-Sair")
+    escolha = input("Escolha:")
+    if escolha == "1":
+        resetar_jogo()
+    else:
+        print("Obrigado por jogar!")
+
+#Sistema de sanidade        
+def sanidade_sistema():
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade \ne começaram a lutar um contra os outros até sobra um unico,\nque não se sabe o que aconteceu com ele")
+        tela_morte1()
+    else:
+        return
+    
+#perde vidas 2
+def vidas():
+    global integrantes
+    integrantes -= 1
+    if integrantes >= 1:
+       return
+    else:
+      tela_morte1()
+      return           
+
+#perde vida
+def integrante():
+    global integrantes
+    if integrantes >= 1:
+        vidas()
+        return
+    else:
+        print("Nâo há mais integrantes no grupo")
+        tela_morte()
+ 
+ #Pegar ferrramentas       
+def pegar_ferramenta(nome):
+    global obj, obj1, obj2
+    if obj == " ":
+        obj = nome
+    elif obj1 == " ":
+        obj1 = nome
+    elif obj2 == " ":
+        obj2 = nome
+    else:
+        print("Seu inventário está cheio!")
+        return
+    print(f"\nVocê pegou: {nome}")
+
+#inventario
+def mostrar_info(local_atual):
+    global sanidade
+    global obj
+    global obj1
+    global obj2
+    print()
+    print("=== Status do grupo ===")
+    print("Integrantes:", integrantes)
+    print("Sanidade:", sanidade)
+    print("Ferramentas:")
+    print("Ferramenta 1:", obj if obj != "" else "[vazio]")
+    print("Ferramenta 2:", obj1 if obj1 != "" else "[vazio]")
+    print("Ferramenta 3:", obj2 if obj2 != "" else "[vazio]")
+    print()
+    print("Escreva Exit ou press qualque botão para sair")
+    escolha = input("\nO que deseja fazer? ").strip().lower()
+
+    if escolha == "l" and obj == "Papel envelhecido (digite 'l' para ver o conteúdo)" or escolha == "l" and obj1 == "Papel envelhecido (digite 'l' para ver o conteúdo)" or escolha == "l" and obj2 == "Papel envelhecido (digite 'l' para ver o conteúdo)":  
+        print()
+        print("\n Papel envelhecido \n")
+        print("""
+        O mecanismo da porta de ferro brilha com senha escodido por runas antigas, 
+        reliquias poderes estar em tais livros deste deposito.
+        
+        Cada um contendo uma runa gravado na sua lateral e um número gravado em suas páginas.
+        Esses números formarão a senha para abrir a porta.
+                
+        Porém CUIDADO alguns livros invejoso exibem os mesmos símbolos corretos, mas estão vazios...
+        """)
+        print("Simbolos especiais da senha em ordem:")
+        print(senha_simbolos)
+        input("(Pressione ENTER para voltar)")
+
+        local_atual()
+    else:
+        local_atual()
+
+#Descate machado
+def descarte_machado():
+    global obj
+    if obj == "machado":
+        obj == " "
+    
+#INICIO ATO 3
+def ato3():
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("=== CAPITULO 3: O... ===")
+    print("CONTINUA...")
+#FIM ATO 3
+
+
+
+#caminho do corredor ATO 2
+
+#O que faz o puzzle do ato 2 funcionar
+import random
+simbolos_possiveis = ["☀", "★", "✝", "☯", "☢", "⚙", "☘", "☠", "☾", "☽", "⚗", "♆", "♈", "♉", "♊"]
+senha_simbolos = random.sample(simbolos_possiveis, 3)
+senha_numeros = [random.randint(1, 9) for _ in range(3)]
+senha_final = "".join(str(n) for n in senha_numeros)
+
+#Tentar dnv o codigo se erra
+def tentardnv():
+    print()
+    print("Simbolos especiais da senha em ordem:")
+    print(senha_simbolos)
+    tentativa = input("Digite o código de 3 números: ").strip()
+
+    if tentativa == senha_final:
+        print()
+        print("\n No disposivo brilha uma luz verde dizendo CORRETO e a porta de ferro se abre lentamente...")
+        print("Vocês atravessam para um corredor envolto em luz púrpura...")
+        print()
+        input("press ENTER para comecar o ATO")
+        ato3()
+    else:
+        print()
+        print("\nAs quadros ficam furiosos gritam fazendo seus ouvidos doerem — o código está errado!")
+        print("O grupo perde 10 de sanidade")
+        sanidade -= 10
+        print(f"Sanidade restante: {sanidade}")
+        if sanidade <= 0:
+            tela_morte2()
+        else:
+            print()
+            print("Os quadros se acalmam... talvez deva tentar de novo.")
+            tentardnv()
+
+#Minigame do Ato 2
+def puzzle():
+    global sanidade
+    sanidade_sistema()
+    import time
+    encontrados = {}  
+    tentativas = 0
+    print()
+    print("AVISO: ANTES DE COMEÇA O MINIGAME SERA LIMPADO O TEXTO A CIMA")
+    input("press ENTER após ler o texto a cima")
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')
+    #Simbolos do papel
+    print("Simbolos especiais do papel misterioso em ordem:")
+    print(senha_simbolos)
+    print()
+    input("press ENTER para começa o minigame")
+    print()
+    print("Você sente os olhos nos retratos te observando enquanto se aproxima da primeira estante...")
+    time.sleep(0.8)
+    print()
+    while len(encontrados) < 3 and sanidade > 0:
+        time.sleep(0.8)
+        tentativas += 1
+        estante_num = random.randint(1, 15)
+        print(f"\n Estante {estante_num}")
+
+        simbolos_estante = random.sample(simbolos_possiveis, 2)
+        simbolo_enganador = random.choice(senha_simbolos)
+        simbolos_estante.append(simbolo_enganador)
+        random.shuffle(simbolos_estante)
+
+        for i, simb in enumerate(simbolos_estante, 1):
+            print(f"{i} - Livro com símbolo {simb}")
+
+        escolha = input("Escolha um livro (1, 2 ou 3): ").strip()
+
+        if escolha not in ["1", "2", "3"]:
+            print("Você hesita e ouve sussurros... perdeu 5 de sanidade.")
+            print("O grupo perde 5 de sanidade")
+            sanidade -= 5
+            continue
+
+        escolhido = simbolos_estante[int(escolha) - 1]
+
+        if escolhido in senha_simbolos:
+       
+            verdadeiro = random.choice([True, False])
+
+            if verdadeiro and escolhido not in encontrados:
+                numero = senha_numeros[senha_simbolos.index(escolhido)]
+                encontrados[escolhido] = numero
+                print(f" O símbolo {escolhido} brilha e revela o número {numero}.")
+            elif escolhido in encontrados:
+                print("O livro parecia familiar ao encontrado antes...mas o livro está vazio e se desfaz.")
+                print("O grupo perde 5 de sanidade")
+                sanidade -=5
+                print(f"Sanidade atual: {sanidade}")
+                
+            else:
+                print(f"O símbolo {escolhido} parece familiar... mas o livro está vazio e se defaz.")
+                print("O grupo perde 5 de sanidade")
+                sanidade -= 5
+                print(f"Sanidade atual: {sanidade}")
+        else:
+            print(f"O livro com o símbolo {escolhido} se desfaz em cinzas!")
+            print("O grupo perde 7 de sanidade")
+            sanidade -= 7
+            print(f"Sanidade atual: {sanidade}")
+
+        if sanidade <= 0:
+            print("\nA mente dos membros do grupo colapsa com as vozes da biblioteca...")
+            tela_morte2()
+            return
+
+        print("\nSímbolos e números encontrados até agora:")
+        if encontrados:
+            for simb, num in encontrados.items():
+                print(f"  {simb} → {num}")
+        else:
+            print("  Nenhum até o momento...")
+
+    print("\n Você reuniu os três números!!!")
+    print(" ".join([f"{simb}({num})" for simb, num in encontrados.items()]))
+    print("\nO grupo retorna para o local da porta de ferro... Os adolecente se aproximam o disposivo, pedindo um código de 3 dígitos.")
+    time.sleep(0.8)
+    tentativa = input("Digite o código de 3 números: ").strip()
+
+    if tentativa == senha_final:
+        print("\n No disposivo brilha uma luz verde dizendo CORRETO e a porta de ferro se abre lentamente...")
+        print("Vocês atravessam para um corredor envolto em luz púrpura...")
+        print()
+        input("press ENTER para comecar o ATO")
+        ato3()
+    else:
+        print("\nAs quadros ficam furiosos gritam fazendo seus ouvidos doerem — o código está errado!")
+        print("O grupo perde 10 de sanidade")
+        sanidade -= 10
+        print(f"Sanidade restante: {sanidade}")
+        if sanidade <= 0:
+            tela_morte2()
+        else:
+            print("Os quadros se acalmam... talvez deva tentar de novo.")
+            tentardnv()
+
+#caso o jogador tenha o Lampião e explore a biblioteca
+def biblioteca():
+    sanidade_sistema()
+    import time
+    print()
+    print(""""
+           __________________________________________________________________________
+          |   _________________porta(vc) ↑  __________         |||||||        | | | |                                         
+          |   _________________             __________         |||||||        | | | |                      
+          |   _________________             __________         |||||||        | | | |                           
+          |                                                    ‾ ‾ ‾ ‾|       | | | |
+          |porta imensa de entrada <-                                 | porta de    |
+          |                Area de leitura <- ########                | Ferro ->    |
+          |   _________________       _ _     ########         _______|       | | | |                            
+          |   _________________      | - |    ########         |||||||        | | | |                              
+          |   _________________      |   |    ########         |||||||        | | | |                           
+          |____________________________________________________|||||||________|_|_|_|
+          """)
+    print()
+    print("Enquanto exploravam a biblioteca, o grupo caminhava em silêncio,"
+      "\nouvindo apenas o som abafado de seus próprios passos.")
+    time.sleep(1)
+    print("As estantes eram altas e antigas, repletas de livros empoeirados e símbolos estranhos gravados nas lombadas.\n"
+      "Retratos antigos e macabros observavam cada movimento, com olhos que pareciam seguir os adolescentes por todo o salão.")
+    print()
+    time.sleep(1.5)
+    print ("Ao subirem a escadaria de madeira e avançarem pelos corredores,\n"
+    "o ar ficou mais pesado e o cheiro de mofo tomou conta do ambiente.")
+    time.sleep(1)
+    print()
+    print("Então, no fim do corredor, eles encontraram uma imensa porta de ferro,\n"
+    "com um mecanismo de senha ao lado e um esqueleto caído junto a um papel amarelado.")
+    time.sleep(1)
+    print()
+    input("Pressione ENTER para se aproximar do esqueleto...")
+    print()
+    print("O grupo se aproxima lentamente. O esqueleto segura um papel antigo e frágil.\n"
+    "Um dos adolescentes o pega com cuidado e o desdobra, mas as letras quase se apagam...")
+    print()
+    time.sleep(1.5)
+    print("Mesmo assim, dá pra ler algumas palavras e símbolos estranhos rabiscados no canto.\n")
+    print()
+    print("Você guardou o 'papel misterioso'. Ele agora pode ser visto em 'Exibir informações'.\n")
+    pegar_ferramenta("Papel envelhecido (digite 'l' para ver o conteúdo)")
+    print()
+    time.sleep(1.5)
+    print("Aviso:Você será forçadamente lavado para o inventario.")
+    mostrar_info(puzzle)
+    
+#Caso o jogador descanse mais de uma vez antes de pegar o lampião
+def es5():
+    global sanidade
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade " 
+        "\ne começaram a lutar um contra os outros até sobra um unico," 
+        "\nque não se sabe o que aconteceu com ele.")
+        tela_morte2()
+    else:
+        print()
+        print("O que grupo deve fazer??(1,2 ou 3)")
+        print("1-Pegar a lampião sobre a mesa")
+        print("2-Procurar uma saida")
+        print("3-Exibir informações")
+        escolha = input("Escolha:")
+        if escolha == "1":
+            print()
+            print("Um dos integrantes pega lampião, conseguindo ter maior visibilidade do local.")
+            pegar_ferramenta("lampião")
+            es5_1()
+        elif escolha == "2":
+            print()
+            print("Eles ficam andando encostados pela parade, mas pela escuridao e medo acabam voltando pro local base.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es5()
+        elif escolha == "3":
+            mostrar_info(es5)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+        es5()
+
+
+#Caso o jogador escolha procura uma saida(sem lampião), abra o inventario ou escolha nada
+def es4():
+    global sanidade
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade " 
+        "\ne começaram a lutar um contra os outros até sobra um unico," 
+        "\nque não se sabe o que aconteceu com ele.")
+        tela_morte2()
+    else:
+        print()
+        print("O que grupo deve fazer??(1,2,3 ou 4)")
+        print("1-Pegar a lampião sobre a mesa")
+        print("2-Procurar uma saida")
+        print("3-Descançar")
+        print("4-Exibir informações")
+        escolha = input("Escolha:")
+        if escolha == "1":
+                print()
+                print("Um dos integrantes pega lampião, conseguindo ter maior visibilidade do local.")
+                pegar_ferramenta("lampião")
+                es5_1()
+        elif escolha == "2":
+                print()
+                print("Eles ficam andando encostados pela parade, mas pela escuridao e medo acabam voltando pro local base.")
+                print("O grupo perde 10 de sanidade.")
+                sanidade -=10
+                es4()
+        elif escolha == "3":
+            print()
+            print("Os adolecentes decidem continuam descançando, porem escutam grito, e fortes batidas da porta do corredor.")
+            print("O grupo perde 20 de sanidade.")
+            sanidade -= 20
+            es5()
+        elif escolha == "4":
+            mostrar_info(es5)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es5()
+
+#Caso o jogador descanse mais de uma vez ou pegue o lampião após descansar uma vez ou mais
+def es5_1():
+    global sanidade
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade " 
+        "\ne começaram a lutar um contra os outros até sobra um unico," 
+        "\nque não se sabe o que aconteceu com ele.")
+        tela_morte2()
+    else:
+        print()
+        print("O que grupo deve fazer??(1,2 ou 3)")
+        print("1-Procurar uma saida")
+        print("2-Descançar")
+        print("3-Exibir informações")
+        escolha = input("Escolha:")
+        if escolha == "1":
+            biblioteca()
+        elif escolha == "2":
+            print()
+            print("Os adolecentes decidem continuam descançando, porêm escutam grito, e fortes batidas da porta do corredor.")
+            print("O grupo perde 20 de sanidade.")
+            sanidade -= 20
+            es5_1()
+        elif escolha == "3":
+            mostrar_info(es5_1)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es5_1()
+
+#Caso o jogador pegue o lampião
+def es4_1():
+    global sanidade
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade " 
+        "\ne começaram a lutar um contra os outros até sobra um unico," 
+        "\nque não se sabe o que aconteceu com ele.")
+        tela_morte2()
+    else:
+        print()
+        pegar_ferramenta("Lampião")
+        print("O que grupo deve fazer??(1,2 ou 3)")
+        print("1-Procurar uma saida")
+        print("2-Descançar")
+        print("3-Exibir informações")
+        escolha = input("Escolha:")
+        if escolha == "1":
+          biblioteca()
+        elif escolha == "2":
+            print()
+            print("Os adolecentes descansam um pouco e se sente menos cansados.")
+            print("O grupo ganha 30 de sanidade.")
+            sanidade += 30
+            es5_1()
+        elif escolha == "3":
+            mostrar_info(es4_1)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es4_1()
+
+#Caso o jogador vá para Ato 2 sem machado
+def porta():
+    global sanidade 
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade " 
+        "\ne começaram a lutar um contra os outros até sobra um unico," 
+        "\nque não se sabe o que aconteceu com ele.")
+        tela_morte2()
+    else:
+        import time
+        input("\nPressione ENTER para Começa o CAPITULO...")
+        import os
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("=== CAPITULO 3: A Biblioteca ===")     
+        print()            
+        print("Ao entrarem na sala, batem a porta atrás de si com força. " 
+        "\nO som ecoa, e por um instante, o silêncio domina o ar pesado.")
+        print()
+        time.sleep(1.5)
+        print("O lugar parece ser uma antiga biblioteca. As paredes estão " 
+        "\ncobertas por estantes repletas de livros empoeirados e papéis rasgados.")
+        print()
+        time.sleep(1.5)
+        print("O ar é denso, e uma sensação estranha percorre o grupo como se algo os observasse entre as sombras.")
+        print()
+        time.sleep(1)
+        print("Um dos integrantes nota uma Lampião sobre uma mesa, a única fonte de luz no ambiente."   
+        "\nNo chão, marcas profundas de unhas ne arranhões formam trilhas até uma parede rachada.")
+        time.sleep(1.5)
+        print()
+        print("O que grupo deve fazer??(1,2,3 ou 4)")
+        print("1-Pegar a lampião sobre a mesa")
+        print("2-Procurar uma saida")
+        print("3-Descançar")
+        print("4-Exibir informações")
+        escolha = input("Escolha:")
+        if escolha == "1":
+            print()
+            print("Um dos integrantes pega Lampião, conseguindo ter maior visibilidade do local.")
+            es4_1()
+        elif escolha == "2":
+            print()
+            print("Eles ficam andando encostados pela parade, mas pela escuridao e medo acabam voltando pro local base.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es4()
+        elif escolha == "3":
+            print()
+            print("Os adolecentes descansam um pouco e se sente menos cansados.")
+            print("O grupo ganha 30 de sanidade.")
+            sanidade += 30
+            es4()
+        elif escolha == "4":
+            mostrar_info(es4)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es4()
+
+#Caso o jogador nn escolha nenhuma da opções        
+def errobonus1():
+    import time
+    print("O que o grupo deve fazer??(1 ou 2)")
+    print("1-Entrar no burraco")
+    print("2-Não Entrar no burraco")
+    escolha = input("escolha: ")
+    if escolha == "1":
+      ato3() #terminar de escrever quando eu começar o ato 3
+    elif escolha == "2":
+      print()
+      print("O grupo não conseguiu ter corragem de entra no burrado " 
+      "\ne burraco se regenera até voltar ao seu estado original")
+      print()
+      time.sleep(0.9)
+      print("O grupo se volta para o comodo que estão.")
+      es4()
+    else:
+        print()
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 20 de sanidade.")
+        sanidade -= 20
+        errobonus1()
+
+#Caso o jogador use o machado na rachadura
+def caminho_bonus1():
+    global sanidade
+    sanidade_sistema()
+    import time
+    print()
+    print("Quando os gritos cessaram a parede começou a lentamente se regenerar como se estivesse viva, " 
+    "\nera algo extremamente assustador mais indiscutivelmente incrivel.")
+    print()
+    time.sleep(1.5)
+    print("O que o grupo deve fazer??(1 ou 2)")
+    print("1-Entrar no burraco")
+    print("2-Não Entrar no burraco")
+    escolha = input("escolha: ")
+    if escolha == "1":
+      ato3() #terminar de escrever quando eu começar o ato 3
+    elif escolha == "2":
+      print()
+      print("O grupo não conseguiu ter corragem de entra no burrado " 
+      "\ne burraco se regenera até voltar ao seu estado original.")
+      time.sleep(0.9)
+      print()
+      print("O grupo se volta para o comodo que estão.")
+      print()
+      es4()
+    else:
+        print()
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 20 de sanidade.")
+        sanidade -= 20
+        errobonus1()
+    
+    
+#Caso o jogador tenha o machado e foi pro ato 2  
+def ato2commachado():
+    global sanidade
+    sanidade_sistema()
+    import time
+    input("\nPressione ENTER para Começa o CAPITULO...")
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("=== CAPITULO 3: A Biblioteca ===")
+    print()     
+    print("Ao entrarem na sala, batem a porta atrás de si com força. " 
+    "\nO som ecoa, e por um instante, o silêncio domina o ar pesado.")
+    print()
+    time.sleep(1.5)
+    print("O lugar parece ser uma antiga biblioteca. As paredes estão " 
+    "\ncobertas por estantes repletas de livros empoeirados e papéis rasgados.")
+    print()
+    time.sleep(1.5)
+    print("O ar é denso, e uma sensação estranha percorre o grupo" 
+    "\ncomo se algo os observasse entre as sombras.")
+    print()
+    time.sleep(1)
+    print("Um dos integrantes nota uma Lampião sobre uma mesa, a única fonte de luz no ambiente. No chão, marcas " 
+    "\nprofundas de unhas ne arranhões formam trilhas até uma parede rachada.")
+    print()
+    time.sleep(1)
+    print("O que grupo deve fazer??(1,2,3 ou 4)")
+    print("1-Pegar a lampião sobre a mesa")
+    print("2-Procurar uma saida")
+    print("3-Descançar")
+    print("4-Exibir informações")
+    print("5-Usa o machado na rachadura??(opção bonus)")
+    escolha = input("Escolha:")
+    if escolha == "1":
+        print()
+        print("Um dos integrantes pega Lampião, conseguindo ter maior visibilidade do local.")
+        es4_1()
+    elif escolha == "2":
+        print()
+        print("Eles ficam andando encostados pela parade, mas pela escuridao e medo acabam voltando pro local base.")
+        print("O grupo perde 10 de sanidade.")
+        sanidade -= 10
+        es4()
+    elif escolha == "3":
+        print()
+        print("Os adolecentes descansam um pouco e se sente menos cansados.")
+        print("O grupo ganham 30 de sanidade.")
+        sanidade += 30
+        es4()
+    elif escolha == "4":
+        mostrar_info(es4)
+    elif escolha =="5":
+        print()
+        print("Um dos adolecentes pega o machado e usando toda sua forca acerta bem no meio da rachadura " 
+        "\nfazendo a parade abrir um rombo nela, porém O adolescente não conseguiu continuar segurando e o soltando chão e...")
+        time.sleep(1.5)
+        print()
+        print("Um dos adolecentes vê A PORRA DO CHÃO DEVORAR O MACHADO e começa um grito muito alto de raiva de todos os lados " 
+        "\nda casa como se o grupo tivesse feito algo que não deveriam fazer que deixou eles aterrorizados.")
+        print
+        print("O grupo perde 25 de sanidade.")
+        time.sleep(1)
+        descarte_machado()
+        sanidade -= 25
+        caminho_bonus1()
+    else:
+        print()
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 10 de sanidade.")
+        sanidade -= 10
+        es4()
+#FIm da biblioteca      
+ 
+
+       
+#caminho do corredor ATO 1
+
+#Caso o jogador chegue no final do corredor
+def final_do_corredor():
+    sanidade_sistema()
+    import time
+    print()
+    print("Chegar no final do corredor no grupo encontra uma porta," 
+    "\ntendo nada a perde o grupo decidi abrir a porta.")
+    print()
+    time.sleep(1)
+    print("Ao abri o grupo se depara e adentrarem... ")
+    time.sleep(0.8)
+    if obj == "machado":
+        ato2commachado()
+    else:
+        porta()
+
+#Caso o jogador use o machado   
+def corda_sim():
+     global sanidade
+     import time
+     print()
+     print("Ele usa o machado com todas sua forção na corda e...")
+     time.sleep(1)
+     print()
+     print("\nCai um lustre que destroe o caminho, que conectava o grupo e a criatura,"
+      "quando a criatura se aproximou nela deu um alto rugido e se escondeu na escuridão.")
+     time.sleep(1.5)
+     print()
+     print("Quando grupo tenta remover o machado da parede, eles não conseguem e acabam deixando ele e seguindo caminho.")
+     time.sleep(0.8)
+     descarte_machado()
+     print("O gurpo caminha por um tempo até...")
+     final_do_corredor()
+
+#Caso o jogador nn tenha machado ou nn use o machado
+def corda_nao():
+    global sanidade
+    import time
+    print()
+    print("O grupo continua correndo pelo correndo, ficando cada vez mais desesperador e agoniados com a distancia se diminuindo.")
+    print("O ser se aproxima cada vez mais do grupo é inevitavel, que serão alcançados.")
+    print()
+    time.sleep(0.9)
+    print("O JOGADOR deseja sacrificar um dos integrantes do grupos em prol de NÃO PERDE O JOGO??(1 ou 2??)")
+    integrante()
+    print("1-SIM")
+    print("2-NÃO")
+    escolha = input("Escolha:")
+    if escolha == "1":
+        integrante()
+        sanidade -= 30
+        print()
+        print("Um dos integrantes do grupo para de correr forçadamente, e é alcançado pela criatura," 
+        "\nsendo brutalmente desmenbrado e levado pela criatura pra escuridão.")
+        print
+        print("O grupo perde 25 de sanidade")
+        print()
+        time.sleep(1.5)
+        print("O grupo continua correndo até...")
+        time.sleep(0.8)
+        final_do_corredor()
+    elif escolha == "2":
+        print()
+        print("O JOGADOR decidi não sacrificar um dos integrante do grupo, e por consequencia a criatura"
+        "\nvai pegando um por um do grupo, Até não sobre um unico.")
+        time.sleep(2)
+        tela_morte()
+ 
+ #Caso o jogado tenha o machado   
+def machado():
+    global sanidade
+    import time
+    print()
+    print("O grupo corre para a esquerda...")
+    print()
+    time.sleep(0.8)
+    print()
+    print("O som de passos pesados do monstro ecoando cada vez mais próximo atrás deles." 
+    "\nO corredor parece se estender infinitamente, a respiração do grupo vem em ofegos e o coração dispara.")
+    time.sleep(1.5)
+    print()
+    print("De repente um dos intregantes consegue enchegar uma corda grossa " 
+    "\nfortemente amarrada em algo na parede no meio da escuridão, porem...")
+    time.sleep(1.5)
+    print("O integrante do grupo deve usar o MACHADO na corda??(1 ou 2)")
+    print("1-Sim")
+    print("2-Não")
+    escolha = input("Escolha:")
+    if escolha == "1":
+         corda_sim()
+    else:
+        corda_nao()
+
+#Caso o jogador nn tenha o machado        
+def machado_nao():
+    import time
+    print()
+    print("O grupo corre para a esquerda...")
+    print()
+    time.sleep(0.8)
+    print("O som de passos pesados do monstro ecoando cada vez mais próximo atrás deles." 
+    "\nO corredor parece se estender infinitamente, a respiração do grupo vem em ofegos e o coração dispara.")
+    time.sleep(1.5)
+    print()
+    print("De repente um dos intregantes consegue enchegar uma corda grossa " 
+    "\nfortemente amarrada em algo na parede no meio da escurida.")
+    corda_nao()
+
+#Caso o jogador escolha correr   
+def corrida():
+    global sanidade
+    import time
+    print()
+    print("O grupo segue pelo corredor escuro. O chão range a cada passo, e o som parece ecoar de todos os lados. " 
+    "\nA escuridão é tão densa que mal é possível ver o fim do corredor, após alguns metros, o caminho se divide em duas direções")
+    time.sleep(1.5)
+    print("""
+          
+   \  \     
+    \  \   
+     \  \   
+      \  \ _______________________________________    
+       \ 
+        |  grupo              ☠︎︎ 
+       /  _______________________________________ 
+      /  /
+     /  /
+    /  /
+   /  /
+  /  /    
+          """)
+    
+    print("Um a esquerda, com uma fraca luz piscando ao fundo,"
+    "outra à direita, completamente tomada pela escuridão e um cheiro forte de mofo.")
+    print()
+    time.sleep(0.8)
+    print("Qual caminho o grupo deve Escolher??(1,2 ou 3)")
+    print("1-Esquerda")
+    print("2-Direita")
+    print("3-Exibir informações")
+    escolha = input("Escolha:")
+    if escolha == "1":
+         if obj == "machado":
+            machado()
+         else:
+            machado_nao() 
+    elif escolha == "2":
+        integrante()
+        print()
+        print("O grupo corre para a direita, a escuridão é total, o chão range a cada passo,"
+        "\num dos adolescentes tropeça e cai, gritando, uma sombra enorme surge e arrasta seu corpo" 
+        "\n para o escuro, o som do rasgar de carne ecoa pelo corredor, e o restante do grupo foge apavorado.")
+        print()
+        print("O grupo perde 20 de sanidade.")
+        print()
+        time.sleep(1.5 )
+        print("O grupo correr até...")
+        time.sleep(0.8)
+        sanidade -= 20
+        final_do_corredor()
+    elif escolha == "3":
+        print()
+        print("Enquanto abria o invetario a criatura se aproximou e desimou em pedaços cada um dos adolecentes.")
+        time.sleep(1)
+        tela_morte1()
+    else:
+        print()
+        print("Você REALMENTE tentou fazer outra coisa sem ser seguir um dos caminhos??")
+        time.sleep(1)
+        tela_morte1()
+
+#Inicio do Ato    
+def corredor():
+    global sanidade
+    import time
+    print()
+    input("\nPressione ENTER para Começa o CAPITULO...")
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("=== CAPITULO 2: Corredor ===")
+    print()
+    print("A porta se abre lentamente, revelando um corredor escuro à frente...")
+    time.sleep(0.8)
+    print()
+    print("Por falta de opção o grupo decide cruzar corredor, Caminhando pelo corredor eles começam a escutar barulhos" 
+    "\nestranhos vindos das paredes, que ficaram mais fortes até... " )
+    print()
+    time.sleep(1)
+    print("\n A parede se quebrar, e emergir do buraco um ser com formato"
+    "\nhumanoide que começa a correr ferozmente em direção o grupo.")
+    print("""
+         _________________________________   ___        
+                        grupo             ☠︎︎ 
+         _______________________________________ 
+          """)
+    time.sleep(0.8)
+    print("O que grupo deve fazer??(1,2 ou 3)")
+    print("1-CORRER")
+    print("2-MORRER")
+    print("3-Exibir informações")
+    escolha = input("Escolha:")
+    if escolha == "1":
+        corrida()
+    elif escolha == "2":
+        print()
+        print("A criatura se aproximou e desimou em pedaço cada um dos adolecentes.")
+        time.sleep(1)
+        tela_morte()
+    elif escolha == "3":
+        print()
+        print("Enquanto abria o invetario a criatura se aproximou e desimou em pedaços cada um dos adolecentes.")
+        time.sleep(1)
+        tela_morte1()
+    else:
+        print()
+        print("Você REALMENTE tentou fazer outra coisa sem CORRER??")
+        time.sleep(1)
+        tela_morte1()
+#FIM DO CAMINHO DO CORREDOR
+
+
+
+# SALA DO RETRATO ATO 0.5
+
+#Basico para o jogo funcionar
+cores_por_fase = {
+       "criança": "vermelho",
+      "adolescente": "laranja",
+      "adulto": "verde",
+      "idoso": "branco"
+        }
+
+cores_painel = list(cores_por_fase.values())
+random.shuffle(cores_painel)
+
+#Sorteia números de 1 a 9
+numeros = {fase: random.randint(0, 9) for fase in cores_por_fase}
+ 
+# Cria a senha com base na ordem das cores no painel
+cor_para_fase = {v: k for k, v in cores_por_fase.items()}  
+senha_correta = ''.join(str(numeros[cor_para_fase[cor]]) for cor in cores_painel)
+
+#Caso o jogador nn coloque senha ou erre a senha
+def ret3():
+    global sanidade
+    sanidade_sistema()
+    print()
+    tentativa = input("Digite a senha de 4 dígitos (ou 'sair' para desistir): ")
+
+    if tentativa.lower() == "sair":
+        print()
+        print("\nVocê se afasta do painel... os retratos parecem te observar.")
+        ret2()
+
+    elif tentativa == senha_correta:
+      print()
+      print("\n Um clique metálico ecoa e o painel se apaga.")
+      corredor()
+
+    else:
+        print()
+        print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
+        print("O grupo perde 5 de sanidade.")
+        sanidade -= 5
+        ret3()
+        
+#Caso o jogador escolha sair
+def ret2():
+    global sanidade
+    sanidade_sistema()
+    import time
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')  
+    print()
+    print("=== Papel Velho ===")
+    print()
+    print("Das chamas nasce o sopro, frágil e vibrante, onde tudo começa."
+    "\nO calor do início arde e anuncia a vida.")
+    time.sleep(0.8)
+    print()
+    print("Então a luz se torna intensa, impacientemente deseja tocar o céu e conhecer o próprio reflexo."
+    "\nÉ o tempo da descoberta, da rebeldia e do fogo que ainda não aprendeu a se conter.")
+    time.sleep(0.8)
+    print()
+    print("Em seguida, o vento se acalma, e a terra acolhe passos firmes."
+    "\nÉ o instante em que o ser carrega o peso dos dias e aprende a permanecer.")
+    time.sleep(0.8)
+    print()
+    print("Por fim, o mundo silencia. O ar torna-se leve,"
+    "\ne o espírito repousa em serenidade. Há paz onde antes havia fogo.")
+    time.sleep(0.5)
+    print()
+    print("E assim, o ciclo se fecha...")
+    time.sleep(1)
+    print()
+    print("O grupo observa os retratos com atenção...\n")
+    time.sleep(1)
+    print()
+    for fase, cor in cores_por_fase.items():
+        print(f"• Retrato de um {fase.capitalize()}: há um número gravado — {numeros[fase]}.")
+        time.sleep(1.2)
+
+    input("\nPressione ENTER para olhar o painel de cores...")
+    
+    print()
+    print(" O painel da porta pisca em uma sequência colorida:")
+    for cor in cores_painel:
+        print(f"→ {cor.upper()}")
+        time.sleep(0.8)
+
+    tentativa = input("Digite a senha de 4 dígitos (ou 'sair' para revisar as informações): ")
+
+    if tentativa.lower() == "sair":
+        print()
+        print("\nVocê se afasta do painel... os retratos parecem te observar.")
+        ret2()
+
+    elif tentativa == senha_correta:
+        print()
+        print("\n Um clique metálico ecoa e o painel se apaga.")
+        corredor()
+    
+    else:
+        print()
+        print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
+        print("O grupo perde 5 de sanidade.")
+        sanidade -= 5
+        ret3()
+        
+#Caso o jogador escolha a porta da esquerda
+def salaretrato():
+    global sanidade
+    sanidade_sistema()
+    import time
+    input("\nPressione ENTER para Começa o CAPITULO...")
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("=== CAPITULO 1: Sala de Retrato ===")
+    print()
+    print("O grupo entra em uma sala antiga, mas a porta a atrás se fecha repentinamente" 
+    "\num dos adolescentes tenta abrir ela de volta, mas não consegue.")
+    time.sleep(1.5)
+    print()
+    print("O ar da sala vai ficando cada vez mais pesado, o chão rangendo sob seus pés.Nas paredes,"
+    "\nhá quatro retratos cobertos de poeira que retratam o que parece ser um em idades diferentes.")
+    time.sleep(1.5)
+    print()
+    print("No final da sala parece haver uma portal com aparentemente um painel do seu lado:")
+    print()
+    print("""
+    _____________________________________________________________
+    |       ______                   ______                      |
+    |      |      |                 |      |                     |
+    |      |      |                 |      |                     |
+    |      |      |                 |      |                     |
+    |      |______|                 |______|                     |
+    |      Adulto ↑                 Idoso ↑                      | 
+    |    Porta de entrada←                     →Porta com senha  |
+    |       ______                   ______                      |
+    |      |      |                 |      |                     |
+    |      |      |                 |      |                     |
+    |      |      |                 |      |                     |
+    |      |______|                 |______|                     | 
+    |     Criança ↑            Adolescente ↑                     |
+    |____________________________________________________________| 
+""")
+    
+    print()
+    print("Um dos adolecentes do grupo olha para perto de um dos quadro e encontra um papel"
+    "\nO papel parece estar meio acabado, mas é possivel ver o conteúdo dele:")
+    time.sleep(0.8)
+    print()
+    input("press ENTER para ver o conteúdo do papel")
+    print()
+    print("=== Papel Velho ===")
+    print()
+    print("Das chamas nasce o sopro, frágil e vibrante, onde tudo começa."
+    "\nO calor do início arde e anuncia a vida.")
+    time.sleep(0.8)
+    print()
+    print("Então a luz se torna intensa, impacientemente deseja tocar o céu e conhecer o próprio reflexo."
+    "\nÉ o tempo da descoberta, da rebeldia e do fogo que ainda não aprendeu a se conter.")
+    time.sleep(0.8)
+    print()
+    print("Em seguida, o vento se acalma, e a terra acolhe passos firmes."
+    "\nÉ o instante em que o ser carrega o peso dos dias e aprende a permanecer.")
+    time.sleep(0.8)
+    print()
+    print("Por fim, o mundo silencia. O ar torna-se leve,"
+    "\ne o espírito repousa em serenidade. Há paz onde antes havia fogo.")
+    time.sleep(0.5)
+    print()
+    print("E assim, o ciclo se fecha...")
+    time.sleep(1)
+    print()
+    input("Pressione ENTER para examinar os retratos...")
+    print()
+    print("O grupo observa os retratos com atenção...\n")
+    time.sleep(1)
+    print()
+    for fase, cor in cores_por_fase.items():
+        print(f" Retrato de um {fase.capitalize()}: há um número gravado — {numeros[fase]}.")
+        time.sleep(1.2)
+    print()
+    print("Se aproximando da porta eles percebem um pequeno\npainel ao lado piscando cores diferentes:")
+    print()
+    input("\nPressione ENTER para olhar as cores do PAINEL ...")
+    print()
+    print("O painel da porta pisca em uma sequência colorida:")
+
+    for cor in cores_painel:
+        print(f"→ {cor.upper()}")
+        time.sleep(0.8)
+    print()
+    print("Depois de algum tempo pensando o grupo decide tentar acerta a senha.")
+    time.sleep(1.5)
+    print()
+    tentativa = input("Digite a senha de 4 dígitos (ou 'sair' para revisar as informações): ")
+
+    if tentativa.lower() == "sair":
+        print()
+        print("\nVocê se afasta do painel... os retratos parecem te observar.")
+        ret2()
+
+    elif tentativa == senha_correta:
+        print()
+        print("\n Um clique metálico ecoa e o painel se apaga.")
+        corredor()
+                
+    else:
+        print()
+        print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
+        print("O grupo perde 5 de sanidade.")
+        sanidade -= 5
+        ret3()
+       
+       
+       
+#PROLOGO/ INICIO DO JOGO
+
+#Caso o jogador abra o inventario ou nada
+def es3():
+    global sanidade
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade " 
+        "\ne começaram a lutar um contra os outros até sobra um unico," 
+        "\nque não se sabe o que aconteceu com ele.")
+        tela_morte2()
+    else:
+        print()
+        print("Qual caminho o grupo deverar seguir?? (1, 2, 3):")
+        print("1-Adentrar a porta da esquerda")
+        print("2-subir a escada(indisponivel)")
+        print("3- Exibir informações")
+        escolha1 = input("Esolha:")
+        if escolha1 == "1":
+            salaretrato()
+        elif escolha1 == "2":
+            print()
+        elif escolha1 == "3":
+            mostrar_info(es3)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es3()
+            
+#Caso o jogador escolha a porta da direita   
+def dentro_da_casa1():
+    global sanidade
+    import time
+    sanidade_sistema()
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print()
+    print("Um dos Adolecente afobado abre a porta com força e entra no comodo sem analisar dentro " 
+        "\ne acabada fazendo cair machado que estrava amarado com uma corda na porta e acaba tendo cabeca perfurada.")    
+    print()
+    print("Ele acaba agonizando de dor e sofre até morrer.")
+    print("O grupo perde 15 de sanidade.")
+    integrante()
+    print()
+    time.sleep(1.5)
+    print("O restante do grupo fica aterrorizado e tentam abrir a porta de entrada desesperados " 
+    "\npara tentarem sair da casa, mas não consegue roda a maçaneta de nenhuma maneira.")
+    print()
+    print("Após se acalmarem um dos adolecentes decide pegar o machado.")
+    pegar_ferramenta("machado")
+    time.sleep(1.5)
+    print()
+    print("Qual caminho o grupo deverar seguir?? (1, 2, 3):")
+    print("1-Adentra a porta da esquerda")
+    print("2-subir a escada(indisponivel)")
+    print("3- Exibir informações")
+    escolha1 = input("Esolha:")
+    if escolha1 == "1":
+        salaretrato()
+    elif escolha1 == "2":
+        print()
+    elif escolha1 == "3":
+        mostrar_info(es3)
+    else:
+        print()
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 10 de sanidade.")
+        sanidade -= 10
+        es3()
+        
+#Caso o jogador abra o inventario ou escolha nada
+def es2():
+    global sanidade
+    if sanidade <= 0:
+        print("Os adolecentes não conseguiram mais manter a sanidade " 
+        "\ne começaram a lutar um contra os outros até sobra um unico," 
+        "\nque não se sabe o que aconteceu com ele.")
+        tela_morte2()
+    else:
+        print()
+        print("Qual caminho o grupo deverá seguir?? (1, 2, 3 ou 4):")
+        print("1-Adentra na porta da esquerda")
+        print("2-subir a escada(indisponivel)")
+        print("3-Abrir a porta a direita")
+        print("4- Exibir informações")
+        escolha1 = input("Escolha:")
+        if escolha1 == "1":
+         salaretrato()
+        elif escolha1 == "2":
+            print()
+        elif escolha1 == "3": 
+            print()
+            sanidade -=15
+            dentro_da_casa1()
+        elif escolha1 == "4":
+            mostrar_info(es2)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es2()
+            
+#Caso o jogador escolhar entrar na casa        
+def dentro_da_casa():
+    global sanidade
+    sanidade_sistema()
+    import time
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')    
+    print()
+    print("Ao entrarem, o grupo vê que está em uma imensa sala de estar,"
+    "\nMas dado ao estado da casa parecer estar se decompondo e parece caindo aos pedaços.")
+    time.sleep(1.5)
+    print()
+    print("Analisando a sala os adolecentes encontra varias porta com barricadas\n"
+          "de madeira mas diferentes delas há 3 caminhos que não parecem barricados.")
+    time.sleep(1.5)
+    print()
+    print("A esquerda, há uma porta velha sem um pedaço arrombada.")
+    print("A frente da porta, há uma escada, com degraus faltando e alguns parecendo soltos.")
+    print("A direita, há uma porta fechada.")
+    print("""
+     ______________________________________________________________
+     |                            _______                         |
+     |                           |  ↑↑↑  |                        |
+     |                           |       |                        | 
+     |                           |__|_|__|                        |
+     |                             |||||                          |
+     |                             |||||                          |
+     |                             |||||                          | 
+     |                                                            | 
+    |  PORTA ←                    ESCADA ↑              → PORTA    |
+     |____________________________________________________________|
+    """) 
+    time.sleep(1)
+    print()
+    print("Qual caminho o grupo deverá seguir?? (1, 2, 3 ou 4):")
+    print("1-Adentra a porta da esquerda")
+    print("2-subir a escada(indisponivel)")
+    print("3-Abrir a porta a direita")
+    print("4- Ebixir informações")
+    escolha1 = input("Escolha:")
+    if escolha1 == "1":
+        salaretrato()
+    elif escolha1 == "2":
+        print()
+    elif escolha1 == "3": 
+        sanidade -= 15
+        dentro_da_casa1()
+    elif escolha1 == "4":
+        mostrar_info(es2)
+    else:
+        print()
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 10 de sanidade.")
+        sanidade -= 10
+        es2()
+#fim lobby da casa
+
+#introdução 
+def inicio():
+    global sanidade
+    import time
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')  
+    
+    #Nome do jogo:
+    print("""Within Four Walls""")
+    input("Press ENTER para iniciar o PROLOGO")
+    print()
+    
+    #Prologo:
+    print("=== PROLOGO: A Casa ===")
+    print()
+    print("Em uma noite extremamente escura, numa floresta famosa "
+    "\npor boatos sobre desaparecimente inesplicaveis," 
+    "\num grupo de 5 adolecentes corasojo a desbrava, ate... ")
+    time.sleep(2) 
+    print("\nEncontrarem uma casa: ")
+    print(" ")
+    print('       .-------.')
+    print('      /        \\')
+    print('     /  /\\  /\\  \\')
+    print('    /__/__\\/__\\__\\')
+    print('    |  []   []   |')
+    print('    |    ___     |')
+    print('    |   |___|    |')
+    print('    |   |___|    |')
+    print('    |___|___|____|')
+    print('     ///     \\\\\\')
+    print(" ")
+    time.sleep(1)
+    print()
+    es1()
+     
+def es1():
+    global sanidade
+    if sanidade <= 0:
+        tela_morte2()    
+    else:
+        print("O grupo deve entrar na casa??(1,2 ou 3)")
+        print("1 - O grupo entra na casa")
+        print("2 - O grupo decide não arriscar e continua o caminho pela floresta(indisponivel)")
+        print("3 - Exibir informações")
+        escolha = input("Escolha: ")
+
+        if escolha == "1":
+            dentro_da_casa()
+        elif escolha == "2":
+            print("O grupo segue pela floresta... o som dos galhos os persegue na escuridão.")
+        elif escolha == "3":
+        
+            mostrar_info(es1)
+        else:
+            print()
+            print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+            print("O grupo perde 10 de sanidade.")
+            sanidade -= 10
+            es1()
+#lobby
+def lobby():
+    global sanidade
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear')    
+    print("""
+    ██████╗ ███████╗███╗   ███╗    ██╗   ██╗██╗███╗   ██╗██████╗  ██████╗ 
+    ██╔══██╗██╔════╝████╗ ████║    ██║   ██║██║████╗  ██║██╔══██╗██╔═══██╗
+    ██████╔╝█████╗  ██╔████╔██║    ██║   ██║██║██╔██╗ ██║██║  ██║██║   ██║
+    ██╔══██╗██╔══╝  ██║╚██╔╝██║    ╚██╗ ██╔╝██║██║╚██╗██║██║  ██║██║   ██║
+    ██████╗ ███████╗██║ ╚═╝ ██║     ╚████╔╝ ██║██║ ╚████║██████╔╝╚██████╔╝
+    ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝      ╚═══╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ 
+    """)
+    print("Você deseja iniciar o jogo??")
+    print("Qual você escolher??(1, 2):".strip().lower())
+    print("1-SIM")
+    print("2-NÃO")
+    escolha2 = input("Escolha:")
+    if escolha2 == "1":
+        inicio()
+    else:
+        print()
+        print("Não jogue ent.")
+
+lobby()
+
+#FIM DO PROLOGO / INICIO
