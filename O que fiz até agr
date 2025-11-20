@@ -176,6 +176,7 @@ def pegar_ferramenta(nome):
 
 #inventario
 def mostrar_info(local_atual):
+    import time
     global sanidade
     global obj
     global obj1
@@ -189,25 +190,48 @@ def mostrar_info(local_atual):
     print("Ferramenta 2:", obj1 if obj1 != "" else "[vazio]")
     print("Ferramenta 3:", obj2 if obj2 != "" else "[vazio]")
     print()
-    print("Escreva Exit ou press qualque botão para sair")
+    print("Press ENTER para sair ou digite o comando para exibir o conteúdo da ferramenta")
     escolha = input("\nO que deseja fazer? ").strip().lower()
 
-    if escolha == "l" and obj == "Papel envelhecido (digite 'l' para ver o conteúdo)" or escolha == "l" and obj1 == "Papel envelhecido (digite 'l' para ver o conteúdo)" or escolha == "l" and obj2 == "Papel envelhecido (digite 'l' para ver o conteúdo)":  
+    if escolha == "l" and obj == "Papel misterioso(digite l para ver o conteúdo)" or escolha == "l" and obj1 == "Papel misterioso(digite l para ver o conteúdo)" or escolha == "l" and obj2 == "Papel misterioso(digite l para ver o conteúdo)":  
         print()
         print("\n Papel envelhecido \n")
-        print("""
-        O mecanismo da porta de ferro brilha com senha escodido por runas antigas, 
-        reliquias poderes estar em tais livros deste deposito.
-        
-        Cada um contendo uma runa gravado na sua lateral e um número gravado em suas páginas.
-        Esses números formarão a senha para abrir a porta.
-                
-        Porém CUIDADO alguns livros invejoso exibem os mesmos símbolos corretos, mas estão vazios...
-        """)
-        print("Simbolos especiais da senha em ordem:")
-        print(senha_simbolos)
+        print("O mecanismo da porta de ferro brilha com senha escodido por runas antigas,"
+        "\nreliquias poderes estar em tais livros deste deposito.")
+        time.sleep(0.8)
+        print()
+        print("Cada um contendo uma runa gravado na sua lateral e um número gravado em suas páginas."
+        "\nEsses números formarão a senha para abrir a porta.")
+        time.sleep(0.8)
+        print()       
+        print("Porém CUIDADO alguns livros invejoso exibem os mesmos símbolos corretos, mas estão vazios...")
+        print(f"Simbolos especiais da senha em ordem: {senha_simbolos}")
+        print()
         input("(Pressione ENTER para voltar)")
-
+        local_atual()
+    elif escolha == "v" and obj == "Papel envelhecido(digite v para ver o conteúdo)" or escolha == "v" and obj1 == "Papel envelhecido(digite v para ver o conteúdo)" or escolha == "v" and obj2 == "Papel envelhecido(digite v para ver o conteúdo)":  
+        print()
+        print("=== Papel Velho ===")
+        print()
+        print("Das chamas nasce o sopro, frágil e vibrante, onde tudo começa."
+        "\nO calor do início arde e anuncia a vida.")
+        time.sleep(0.8)
+        print()
+        print("Então a luz se torna intensa, impacientemente deseja tocar o céu e conhecer o próprio reflexo."
+        "\nÉ o tempo da descoberta, da rebeldia e do fogo que ainda não aprendeu a se conter.")
+        time.sleep(0.8)
+        print()
+        print("Em seguida, o vento se acalma, e a terra acolhe passos firmes."
+        "\nÉ o instante em que o ser carrega o peso dos dias e aprende a permanecer.")
+        time.sleep(0.8)
+        print()
+        print("Por fim, o mundo silencia. O ar torna-se leve,"
+        "\ne o espírito repousa em serenidade. Há paz onde antes havia fogo.")
+        time.sleep(0.5)
+        print()
+        print("E assim, o ciclo se fecha...")
+        print()
+        input("(Pressione ENTER para voltar)")
         local_atual()
     else:
         local_atual()
@@ -226,7 +250,7 @@ def ato3():
     print("CONTINUA...")
 #FIM ATO 3
 
-
+#Arrumar o capitulo pra usuario conseguir ir pro exibir informações igual fiz no capitulo 1 da sala de retrato
 
 #caminho do corredor ATO 2
 
@@ -253,7 +277,7 @@ def tentardnv():
         ato3()
     else:
         print()
-        print("\nAs quadros ficam furiosos gritam fazendo seus ouvidos doerem — o código está errado!")
+        print("\nAs quadros ficam furiosos gritam fazendo seus ouvidos doerem. O código está errado!")
         print("O grupo perde 10 de sanidade")
         sanidade -= 10
         print(f"Sanidade restante: {sanidade}")
@@ -359,7 +383,7 @@ def puzzle():
         input("press ENTER para comecar o ATO")
         ato3()
     else:
-        print("\nAs quadros ficam furiosos gritam fazendo seus ouvidos doerem — o código está errado!")
+        print("\nAs quadros ficam furiosos gritam fazendo seus ouvidos doerem. O código está errado!")
         print("O grupo perde 10 de sanidade")
         sanidade -= 10
         print(f"Sanidade restante: {sanidade}")
@@ -411,8 +435,8 @@ def biblioteca():
     time.sleep(1.5)
     print("Mesmo assim, dá pra ler algumas palavras e símbolos estranhos rabiscados no canto.\n")
     print()
-    print("Você guardou o 'papel misterioso'. Ele agora pode ser visto em 'Exibir informações'.\n")
-    pegar_ferramenta("Papel envelhecido (digite 'l' para ver o conteúdo)")
+    print("Você guardou o papel misterioso. Ele agora pode ser visto em Exibir informações.\n")
+    pegar_ferramenta("Papel misterioso(digite l para ver o conteúdo)")
     print()
     time.sleep(1.5)
     print("Aviso:Você será forçadamente lavado para o inventario.")
@@ -752,7 +776,7 @@ def ato2commachado():
         es4()
 #FIm da biblioteca      
  
-
+# mexer no capitulo do corredor dps
        
 #caminho do corredor ATO 1
 
@@ -976,7 +1000,7 @@ def corredor():
         tela_morte1()
 #FIM DO CAMINHO DO CORREDOR
 
-
+#ta tudo revisado daqui pra baixo eu acho
 
 # SALA DO RETRATO ATO 0.5
 
@@ -998,31 +1022,43 @@ numeros = {fase: random.randint(0, 9) for fase in cores_por_fase}
 cor_para_fase = {v: k for k, v in cores_por_fase.items()}  
 senha_correta = ''.join(str(numeros[cor_para_fase[cor]]) for cor in cores_painel)
 
-#Caso o jogador nn coloque senha ou erre a senha
+#Caso o jogador nn escolha nada ou coloque nada na senha
 def ret3():
     global sanidade
     sanidade_sistema()
     print()
-    tentativa = input("Digite a senha de 4 dígitos (ou 'sair' para desistir): ")
-
-    if tentativa.lower() == "sair":
+    print("O que o grupo deve fazer??(1,2,3,4)")
+    print()
+    print("1-digitar a senha do painel da porta")
+    print("2-Rever todas as informações obtidas")
+    print("3-Exibir informações")
+    escolha = input("Escolha:")
+    if escolha == "1":
         print()
-        print("\nVocê se afasta do painel... os retratos parecem te observar.")
+        tentativa = input("Digite a senha de 4 dígitos: ")
+        if tentativa == senha_correta:
+            print()
+            print("\n Um clique metálico ecoa e o painel se apaga.")
+            corredor()
+                    
+        else:
+            print()
+            print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
+            print("O grupo perde 5 de sanidade.")
+            sanidade -= 5
+            ret3()
+    elif escolha == "2":
         ret2()
-
-    elif tentativa == senha_correta:
-      print()
-      print("\n Um clique metálico ecoa e o painel se apaga.")
-      corredor()
-
+    elif escolha == "3":
+        mostrar_info(ret3)
     else:
         print()
-        print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
-        print("O grupo perde 5 de sanidade.")
-        sanidade -= 5
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 10 de sanidade.")
+        sanidade -= 10
         ret3()
         
-#Caso o jogador escolha sair
+#Caso o jogador escolha rever as informações
 def ret2():
     global sanidade
     sanidade_sistema()
@@ -1030,32 +1066,11 @@ def ret2():
     import os
     os.system('cls' if os.name == 'nt' else 'clear')  
     print()
-    print("=== Papel Velho ===")
-    print()
-    print("Das chamas nasce o sopro, frágil e vibrante, onde tudo começa."
-    "\nO calor do início arde e anuncia a vida.")
-    time.sleep(0.8)
-    print()
-    print("Então a luz se torna intensa, impacientemente deseja tocar o céu e conhecer o próprio reflexo."
-    "\nÉ o tempo da descoberta, da rebeldia e do fogo que ainda não aprendeu a se conter.")
-    time.sleep(0.8)
-    print()
-    print("Em seguida, o vento se acalma, e a terra acolhe passos firmes."
-    "\nÉ o instante em que o ser carrega o peso dos dias e aprende a permanecer.")
-    time.sleep(0.8)
-    print()
-    print("Por fim, o mundo silencia. O ar torna-se leve,"
-    "\ne o espírito repousa em serenidade. Há paz onde antes havia fogo.")
-    time.sleep(0.5)
-    print()
-    print("E assim, o ciclo se fecha...")
-    time.sleep(1)
-    print()
-    print("O grupo observa os retratos com atenção...\n")
+    print("O grupo observa os retratos novamente com atenção...\n")
     time.sleep(1)
     print()
     for fase, cor in cores_por_fase.items():
-        print(f"• Retrato de um {fase.capitalize()}: há um número gravado — {numeros[fase]}.")
+        print(f"Retrato de um {fase.capitalize()}: há um número gravado — {numeros[fase]}.")
         time.sleep(1.2)
 
     input("\nPressione ENTER para olhar o painel de cores...")
@@ -1063,28 +1078,40 @@ def ret2():
     print()
     print(" O painel da porta pisca em uma sequência colorida:")
     for cor in cores_painel:
-        print(f"→ {cor.upper()}")
+        print(f" {cor.upper()}")
         time.sleep(0.8)
-
-    tentativa = input("Digite a senha de 4 dígitos (ou 'sair' para revisar as informações): ")
-
-    if tentativa.lower() == "sair":
+    print()
+    print("O que o grupo deve fazer??(1,2,3,4)")
+    print()
+    print("1-digitar a senha do painel da porta")
+    print("2-Rever todas as informações obtidas")
+    print("3-Exibir informações")
+    escolha = input("Escolha:")
+    if escolha == "1":
         print()
-        print("\nVocê se afasta do painel... os retratos parecem te observar.")
+        tentativa = input("Digite a senha de 4 dígitos: ")
+        if tentativa == senha_correta:
+            print()
+            print("\n Um clique metálico ecoa e o painel se apaga.")
+            corredor()
+                    
+        else:
+            print()
+            print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
+            print("O grupo perde 5 de sanidade.")
+            sanidade -= 5
+            ret3()
+    elif escolha == "2":
         ret2()
-
-    elif tentativa == senha_correta:
-        print()
-        print("\n Um clique metálico ecoa e o painel se apaga.")
-        corredor()
-    
+    elif escolha == "3":
+        mostrar_info(ret3)
     else:
         print()
-        print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
-        print("O grupo perde 5 de sanidade.")
-        sanidade -= 5
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 10 de sanidade.")
+        sanidade -= 10
         ret3()
-        
+
 #Caso o jogador escolha a porta da esquerda
 def salaretrato():
     global sanidade
@@ -1094,16 +1121,17 @@ def salaretrato():
     import os
     os.system('cls' if os.name == 'nt' else 'clear')
     print("=== CAPITULO 1: Sala de Retrato ===")
+    time.sleep(1)
     print()
     print("O grupo entra em uma sala antiga, mas a porta a atrás se fecha repentinamente" 
     "\num dos adolescentes tenta abrir ela de volta, mas não consegue.")
     time.sleep(1.5)
     print()
-    print("O ar da sala vai ficando cada vez mais pesado, o chão rangendo sob seus pés.Nas paredes,"
+    print("O ar da sala vai ficando cada vez mais pesado, o chão rangendo sob seus pés. Nas paredes,"
     "\nhá quatro retratos cobertos de poeira que retratam o que parece ser um em idades diferentes.")
     time.sleep(1.5)
     print()
-    print("No final da sala parece haver uma portal com aparentemente um painel do seu lado:")
+    print("No final da sala parece haver uma portal de ferro imensa, que se diferenciava muito com o desing da casa:")
     print()
     print("""
     _____________________________________________________________
@@ -1124,31 +1152,20 @@ def salaretrato():
 """)
     
     print()
-    print("Um dos adolecentes do grupo olha para perto de um dos quadro e encontra um papel"
-    "\nO papel parece estar meio acabado, mas é possivel ver o conteúdo dele:")
+    print("Andando pela sala dos adolecentes do grupo olha para perto de um dos quadro e encontra um papel."
+    "\nO papel parece estar meio acabado, mas é possivel ler o conteúdo dele")
     time.sleep(0.8)
     print()
-    input("press ENTER para ver o conteúdo do papel")
+    input("Press ENTER para pegar o papel envelhecido")
     print()
-    print("=== Papel Velho ===")
+    print("Você guardou o papel envelhecido.\nVocê poderá ver o seu conteúdo no Exibir informações.")
     print()
-    print("Das chamas nasce o sopro, frágil e vibrante, onde tudo começa."
-    "\nO calor do início arde e anuncia a vida.")
-    time.sleep(0.8)
-    print()
-    print("Então a luz se torna intensa, impacientemente deseja tocar o céu e conhecer o próprio reflexo."
-    "\nÉ o tempo da descoberta, da rebeldia e do fogo que ainda não aprendeu a se conter.")
-    time.sleep(0.8)
-    print()
-    print("Em seguida, o vento se acalma, e a terra acolhe passos firmes."
-    "\nÉ o instante em que o ser carrega o peso dos dias e aprende a permanecer.")
-    time.sleep(0.8)
-    print()
-    print("Por fim, o mundo silencia. O ar torna-se leve,"
-    "\ne o espírito repousa em serenidade. Há paz onde antes havia fogo.")
     time.sleep(0.5)
+    pegar_ferramenta("Papel envelhecido(digite v para ver o conteúdo)")
+    time.sleep(0.8)
     print()
-    print("E assim, o ciclo se fecha...")
+    print("Enquanto um dos adoslecente pegava o papel outro reparou,"
+    "\nque havia números distintos marcados no canto de cada quadro.")
     time.sleep(1)
     print()
     input("Pressione ENTER para examinar os retratos...")
@@ -1157,40 +1174,51 @@ def salaretrato():
     time.sleep(1)
     print()
     for fase, cor in cores_por_fase.items():
-        print(f" Retrato de um {fase.capitalize()}: há um número gravado — {numeros[fase]}.")
+        print(f"Retrato de um {fase.capitalize()}: há um número gravado — {numeros[fase]}.")
         time.sleep(1.2)
     print()
     print("Se aproximando da porta eles percebem um pequeno\npainel ao lado piscando cores diferentes:")
     print()
-    input("\nPressione ENTER para olhar as cores do PAINEL ...")
+    input("\nPressione ENTER para olhar as cores do PAINEL...")
+    time.sleep(0.8)
     print()
     print("O painel da porta pisca em uma sequência colorida:")
 
     for cor in cores_painel:
-        print(f"→ {cor.upper()}")
+        print(f" {cor.upper()}")
         time.sleep(0.8)
     print()
-    print("Depois de algum tempo pensando o grupo decide tentar acerta a senha.")
-    time.sleep(1.5)
+    print("O que o grupo deve fazer??(1,2,3)")
     print()
-    tentativa = input("Digite a senha de 4 dígitos (ou 'sair' para revisar as informações): ")
-
-    if tentativa.lower() == "sair":
+    print("1-digitar a senha do painel da porta")
+    print("2-Rever todas as informações obtidas")
+    print("3-Exibir informações")
+    escolha = input("Escolha:")
+    if escolha == "1":
         print()
-        print("\nVocê se afasta do painel... os retratos parecem te observar.")
+        tentativa = input("Digite a senha de 4 dígitos: ")
+        if tentativa == senha_correta:
+            print()
+            print("\n Um clique metálico ecoa e o painel se apaga.")
+            corredor()
+                    
+        else:
+            print()
+            print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
+            print("O grupo perde 5 de sanidade.")
+            sanidade -= 5
+            ret3()
+    elif escolha == "2":
         ret2()
-
-    elif tentativa == senha_correta:
-        print()
-        print("\n Um clique metálico ecoa e o painel se apaga.")
-        corredor()
-                
+    elif escolha == "3":
+        mostrar_info(ret3)
     else:
         print()
-        print("\n A fechadura emite um som agudo, e as luzes piscam em vermelho.\n a senha digitada está incorreta tente dnv.")
-        print("O grupo perde 5 de sanidade.")
-        sanidade -= 5
+        print("Escolha inválida. O grupo hesita e começa a perder o controle mental.")
+        print("O grupo perde 10 de sanidade.")
+        sanidade -= 10
         ret3()
+                
        
        
        
@@ -1233,7 +1261,8 @@ def dentro_da_casa1():
     os.system('cls' if os.name == 'nt' else 'clear')
     print()
     print("Um dos Adolecente afobado abre a porta com força e entra no comodo sem analisar dentro " 
-        "\ne acabada fazendo cair machado que estrava amarado com uma corda na porta e acaba tendo cabeca perfurada.")    
+        "\ne acabada fazendo cair machado que estrava amarado com uma corda na porta e acaba tendo cabeca perfurada.")  
+    time.sleep(1.5)  
     print()
     print("Ele acaba agonizando de dor e sofre até morrer.")
     print("O grupo perde 15 de sanidade.")
@@ -1242,10 +1271,12 @@ def dentro_da_casa1():
     time.sleep(1.5)
     print("O restante do grupo fica aterrorizado e tentam abrir a porta de entrada desesperados " 
     "\npara tentarem sair da casa, mas não consegue roda a maçaneta de nenhuma maneira.")
+    time.sleep(1.5)
     print()
     print("Após se acalmarem um dos adolecentes decide pegar o machado.")
+    time.sleep(0.5)
     pegar_ferramenta("machado")
-    time.sleep(1.5)
+    time.sleep(0.8)
     print()
     print("Qual caminho o grupo deverar seguir?? (1, 2, 3):")
     print("1-Adentra a porta da esquerda")
